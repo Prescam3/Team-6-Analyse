@@ -1,6 +1,8 @@
+# Import Libraries
 import pandas as pd
 import numpy as np
 
+# Data Loading and Preprocessing
 ebp_url = 'https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/electrification_by_province.csv'
 ebp_df = pd.read_csv(ebp_url)
 
@@ -10,10 +12,14 @@ for col, row in ebp_df.iloc[:,1:].iteritems():
 ebp_df.head()
 
 
+# Twitter Data
+
 twitter_url = 'https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/twitter_nov_2019.csv'
 twitter_df = pd.read_csv(twitter_url)
 twitter_df.head()
 
+
+# Important Variables
 
 # gauteng ebp data as a list
 gauteng = ebp_df['Gauteng'].astype(float).to_list()
@@ -97,13 +103,20 @@ def dictionary_of_metrics(items):
 
 
 #Function_3
+### START FUNCTION
+#Function takes a list of strings given as year/month/date:minutes and seconds and shortens to year/month/date
+def date_parser(dates):
+    # your code here
+    new_list = [magic[0:10] for magic in dates]
+    return(new_list)
 
+### END FUNCTION
 
 
 #Function_4
 
 
-d
+
 #Function_5
 
 
