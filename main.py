@@ -103,14 +103,27 @@ def dictionary_of_metrics(items):
 #Function_4
 
 
-d
+
 #Function_5
 
 
 
 
 #Function_6
+### START FUNCTION
+def word_splitter(df):
+    # your code here
+    """function that splits the sentences ina dataframe into a list
+    of the separate words
+    """
+    new_df = pd.DataFrame(df)
+    column1=df['Tweets'].str.lower().values.tolist()
+    new_list=[i.split() for i in column1]
+    new_df['Split Tweets'] =new_list
+    
+    return new_df
 
+### END FUNCTION
 
 
 
