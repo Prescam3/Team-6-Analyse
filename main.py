@@ -74,6 +74,7 @@ def dictionary_of_metrics(items):
     """A function that calculates the dictionary of metrics including mean,
     median, standard deviation, variance, minimum value, and a maximum value from a list
     """
+    #calculating the metrics
     mean = np.mean(items).round(2)
     median = np.median(items).round(2)
     std = np.std(items, ddof=1).round(2)
@@ -114,12 +115,12 @@ def dictionary_of_metrics(items):
 def word_splitter(df):
     # your code here
     """function that splits the sentences ina dataframe into a list
-    of the separate words
+    of the separate words and returns a modified FataFrame
     """
     new_df = pd.DataFrame(df)
-    column1=df['Tweets'].str.lower().values.tolist()
-    new_list=[i.split() for i in column1]
-    new_df['Split Tweets'] =new_list
+    column1 = df['Tweets'].str.lower().values.tolist() #tweets column is extracted and coverted to a list 
+    new_list = [i.split() for i in column1]
+    new_df['Split Tweets'] = new_list                  #modified dataframe
     
     return new_df
 
