@@ -1,6 +1,8 @@
+# Import Libraries
 import pandas as pd
 import numpy as np
 
+# Data Loading and Preprocessing
 ebp_url = 'https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/electrification_by_province.csv'
 ebp_df = pd.read_csv(ebp_url)
 
@@ -10,10 +12,14 @@ for col, row in ebp_df.iloc[:,1:].iteritems():
 ebp_df.head()
 
 
+# Twitter Data
+
 twitter_url = 'https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/twitter_nov_2019.csv'
 twitter_df = pd.read_csv(twitter_url)
 twitter_df.head()
 
+
+# Important Variables
 
 # gauteng ebp data as a list
 gauteng = ebp_df['Gauteng'].astype(float).to_list()
@@ -94,14 +100,55 @@ def dictionary_of_metrics(items):
 
 
 #Function_2
-
+def five_num_summary(items):
+    five_num_sum = np.percentile(items,[0, 25, 50, 75, 100])
+    dict = {'min': five_num_sum[0],'Q1':five_num_sum[1],'Median':five_num_sum[2],'Q3':five_num_sum[3],'Max':five_num_sum[4]}
+    
+    return dict
 
 
 #Function_3
+### START FUNCTION
+#Function takes a list of strings given as year/month/date:minutes and seconds and shortens to year/month/date
+def date_parser(dates):
+    # your code here
+    new_list = [magic[0:10] for magic in dates]
+    return(new_list)
 
+### END FUNCTION
 
 
 #Function_4
+### START FUNCTION
+def extract_municipality_hashtags(df):
+    municipality = []
+    hashtags = []
+
+    tweets = [i.split(" ") for i in df['Tweets']]
+
+    new_munic_list = []
+    new_tag_list = []
+
+    for tweet in tweets:
+        municipality.append([mun_dict[word] for word in tweet if word in list(mun_dict.keys())])
+        hashtags.append([tag.lower() for tag in tweet if tag.startswith('#')])
+
+    for item in municipality:
+        if item == []:
+            item = np.nan  
+        new_munic_list.append(item)
+
+    for tag in hashtags:
+        if tag == []:
+            tag = np.nan
+        new_tag_list.append(tag)
+    
+    df['municipality'] = new_munic_list
+    df['hashtags'] = new_tag_list
+  
+    return df
+
+### END FUNCTION
 
 
 
