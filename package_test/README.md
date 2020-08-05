@@ -9,6 +9,6 @@ This will show the package we're going to install has been packaged. Furthermore
 
 This is a file which we use to call all our functions and imports for more effective use.
 
-# Installion
+# Installation
  pip install Team-6-Analyse/test
 
