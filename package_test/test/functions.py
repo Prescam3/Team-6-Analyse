@@ -73,6 +73,31 @@ stop_words_dict = {
     ]
 }
 
+#Function_1
+
+### START FUNCTION 1
+def dictionary_of_metrics(items):
+    """A function that calculates the dictionary of metrics including mean,
+    median, standard deviation, variance, minimum value, and a maximum value from a list
+    """
+    #calculating the metrics
+    mean = np.mean(items).round(2)
+    median = np.median(items).round(2)
+    std = np.std(items, ddof=1).round(2)
+    var = np.var(items, ddof=1).round(2)
+    min = np.min(items).round(2)
+    max = np.max(items).round(2)
+ 
+    
+    #dictionary of metrics
+    dict = {'mean':mean, 'median':median, 'std':std, 'var':var, 'min':min, 'max':max, }
+    
+    
+    return  dict
+
+
+
+
 def five_num_summary(items):
     """
     The function should take a list as input.
@@ -83,3 +108,83 @@ def five_num_summary(items):
     dict = {'min': five_num_sum[0],'Q1':five_num_sum[1],'Median':five_num_sum[2],'Q3':five_num_sum[3],'Max':five_num_sum[4]}
     
     return dict
+
+#Function_3
+### START FUNCTION
+
+"""This code serves to shorten input list which is given as 
+    year-month-date:minutes and seconds to year-month-date"""
+def date_parser(dates):
+    # your code here
+    #This portion of the code slices the date to the required length.
+    new_list = [magic[0:10] for magic in dates]
+    # We return the list with sliced dates.
+    return(new_list)
+
+### END FUNCTION
+
+#Function_4
+### START FUNCTION
+def extract_municipality_hashtags(df):
+    municipality = []
+    hashtags = []
+
+    tweets = [i.split(" ") for i in df['Tweets']]
+
+    new_munic_list = []
+    new_tag_list = []
+
+    for tweet in tweets:
+        municipality.append([mun_dict[word] for word in tweet if word in list(mun_dict.keys())])
+        hashtags.append([tag.lower() for tag in tweet if tag.startswith('#')])
+
+    for item in municipality:
+        if item == []:
+            item = np.nan  
+        new_munic_list.append(item)
+
+    for tag in hashtags:
+        if tag == []:
+            tag = np.nan
+        new_tag_list.append(tag)
+    
+    df['municipality'] = new_munic_list
+    df['hashtags'] = new_tag_list
+  
+    return df
+
+### END FUNCTION
+
+#Function_5
+### START FUNCTION
+""""This code serves to calculate the number of tweets per day, 
+    taking in a pandas dataframe as input and returning a new dataframe grouped by day and number of tweets """
+def number_of_tweets_per_day(df):
+    # your code here
+    # We slice the portion of the code needed.
+    df['Date'] = [date[0:10] for date in df['Date']]
+    # Drop the duplicated column.
+    new_df = df.drop(columns=['Date'],axis=1)
+    # Group the contents of the column by the sliced date.
+    new_df = new_df.groupby(df['Date']).count() 
+    return new_df
+
+### END FUNCTION
+
+#Function_6
+### START FUNCTION
+def word_splitter(df):
+    # your code here
+    """function that splits the sentences ina dataframe into a list
+    of the separate words and returns a modified FataFrame
+    """
+    new_df = pd.DataFrame(df)
+    column1 = df['Tweets'].str.lower().values.tolist() #tweets column is extracted and coverted to a list 
+    new_list = [i.split() for i in column1]
+    new_df['Split Tweets'] = new_list                  #modified dataframe
+    
+    return new_df
+
+### END FUNCTION
+
+#function_7
