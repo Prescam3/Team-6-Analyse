@@ -1,13 +1,8 @@
-# To add a new cell, type '# %%'
-# To add a new markdown cell, type '# %% [markdown]'
-# %%
+# Import Libraries
 import pandas as pd
 import numpy as np
 
-# %% [markdown]
-# # Electricification by province (EBP) data
-
-# %%
+# Data Loading and Preprocessing
 ebp_url = 'https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/electrification_by_province.csv'
 ebp_df = pd.read_csv(ebp_url)
 
@@ -16,18 +11,16 @@ for col, row in ebp_df.iloc[:,1:].iteritems():
 
 ebp_df.head()
 
-# %% [markdown]
-# # Twitter Data
 
-# %%
+# Twitter Data
+
 twitter_url = 'https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/twitter_nov_2019.csv'
 twitter_df = pd.read_csv(twitter_url)
 twitter_df.head()
 
-# %% [markdown]
-# # Important Variables
 
-# %%
+# Important Variables
+
 # gauteng ebp data as a list
 gauteng = ebp_df['Gauteng'].astype(float).to_list()
 
@@ -80,10 +73,6 @@ stop_words_dict = {
     ]
 }
 
-# %% [markdown]
-# # Function 2: Five Number Summary
-
-# %%
 def five_num_summary(items):
     """
     The function should take a list as input.
@@ -92,15 +81,5 @@ def five_num_summary(items):
     """
     five_num_sum = np.percentile(items,[0, 25, 50, 75, 100])
     dict = {'min': five_num_sum[0],'Q1':five_num_sum[1],'Median':five_num_sum[2],'Q3':five_num_sum[3],'Max':five_num_sum[4]}
-
+    
     return dict
-#five_num_summary(gauteng)
-
-# %%
-five_num_summary(gauteng)
-
-
-# %%
-
-
-
