@@ -200,3 +200,10 @@ def word_splitter(df):
 
 
 #Function_7
+if __name__ == "__main__":
+    dictionary_of_metrics(items)
+    five_num_summary(items)
+    date_parser(dates)
+    extract_municipality_hashtags(df)
+    number_of_tweets_per_day(df)
+    word_splitter(df)

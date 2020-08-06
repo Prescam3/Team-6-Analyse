@@ -8,7 +8,7 @@ setup(
     description='EDSA example python package',
     long_description=open('README.md').read(),
     install_requires=['numpy'],
-    url='https://github.com/thiyasizwekubeka',
-    author='<thiyasizwe kubeka>',
-    author_email='<thiyasizwekubeka@gmail.com>'
+    url='https://github.com/prescam3@gmail.com',
+    author='Presca Mashamaite',
+    author_email='prescam3@gmail.com'
 )
