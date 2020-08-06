@@ -200,3 +200,18 @@ def word_splitter(df):
 
 
 #Function_7
+
+def stop_words_remover(df):
+
+    """This function accepts a pandas dataframeas input, then tokenises the sentences
+    and removes all stopwords.  
+
+    Paramaters:
+    df (pandas.DataFrame) Accepts a pandas dataframe
+
+    Returns:
+
+    Pandas DataFrame"""
+    df['Without Stop Words'] = df['Tweets'].apply(lambda x: [item for item in str(x).lower().split() if item not in stop_words_dict['stopwords']])
+
+    return df
