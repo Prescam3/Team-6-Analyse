@@ -200,6 +200,7 @@ def word_splitter(df):
 
 
 #Function_7
+<<<<<<< HEAD:package_test/package_test/main.py
 if __name__ == "__main__":
     dictionary_of_metrics(items)
     five_num_summary(items)
@@ -207,3 +208,20 @@ if __name__ == "__main__":
     extract_municipality_hashtags(df)
     number_of_tweets_per_day(df)
     word_splitter(df)
+=======
+
+def stop_words_remover(df):
+
+    """This function accepts a pandas dataframeas input, then tokenises the sentences
+    and removes all stopwords.  
+
+    Paramaters:
+    df (pandas.DataFrame) Accepts a pandas dataframe
+
+    Returns:
+
+    Pandas DataFrame"""
+    df['Without Stop Words'] = df['Tweets'].apply(lambda x: [item for item in str(x).lower().split() if item not in stop_words_dict['stopwords']])
+
+    return df
+>>>>>>> de9ac1dbbb9cac58174396a0c9dc7d778ded2cc9:main.py
